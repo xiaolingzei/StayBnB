@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register - StayBnB</title>
+  <link rel="stylesheet" href="register.css">
+</head>
+<body>
+  <div class="container">
+    <h2>Create your account</h2>
+    <form id="registerForm" method="post" action="register.php">
+      <label for="fullname">Full name</label>
+      <input type="text" id="fullname" name="fullname" placeholder="Enter your full name" required>
+
+  <label for="email">Email address</label>
+  <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+  <label for="password">Password</label>
+  <input type="password" id="password" name="password" placeholder="Create a password" required>
+
+  <label for="confirm">Confirm password</label>
+  <input type="password" id="confirm" name="confirm" placeholder="Confirm your password" required>
+
+      <button type="submit">Register</button>
+
+      <a href="index.html" class="back-btn"> <i class="fas fa-arrow-left"></i> Back to Home</a>
+
+      <div class="login-link">
+        Already have an account? <a href="login.html">Log in</a>
+      </div>
+    </form>
+  </div>
+  
+
+    <script>
+    // Basic client-side check before submit
+    document.getElementById("registerForm").addEventListener("submit", function(event){
+      const password = document.getElementById("password").value;
+      const confirm = document.getElementById("confirm").value;
+      if(password !== confirm) {
+        event.preventDefault();
+        alert("Passwords do not match!");
+      }
+    });
+  </script>
+</body>
+</html>

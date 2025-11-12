@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search Results</title>
+
+  <!-- Leaflet CSS + JS -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+  </script>
+
+  <style>
+    #map {
+      height: 500px;
+      width: 100%;
+      border-radius: 10px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Search Results</h1>
+  <p id="search-location"></p>
+
+<div id="map" style="height: 500px; width: 100%;"></div>
+
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const location = params.get("location");
+    document.getElementById("search-location").innerText = "Showing results for: " + (location || "None");
+
+    const map = L.map('map').setView([14.5995, 120.9842], 13);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    if (location) {
+      fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${location}`)
+        .then(response => response.json())
+        .then(data => {
+          if (data && data.length > 0) {
+            const lat = data[0].lat;
+            const lon = data[0].lon;
+            map.setView([lat, lon], 13);
+            L.marker([lat, lon])
+              .addTo(map)
+              .bindPopup(`Result for: ${location}`)
+              .openPopup();
+          } else {
+            alert("Location not found.");
+          }
+        })
+        .catch(err => console.error("Geocoding error:", err));
+    }
+  </script>
+</body>
+</html>

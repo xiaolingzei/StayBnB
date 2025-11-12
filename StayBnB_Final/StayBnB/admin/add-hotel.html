@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Add Hotel | StayBnB Admin</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="admin-body">
+  <aside class="sidebar">
+    <h2 class="sidebar-title">StayBnB Admin</h2>
+    <ul class="sidebar-nav">
+      <li><a href="index.html">Dashboard</a></li>
+      <li><a href="hotels.html">Hotels</a></li>
+      <li><a href="add-hotel.html" class="active">Add Hotel</a></li>
+      <li><a href="bookings.html">Bookings</a></li>
+      <li><a href="users.html">Users</a></li>
+      <li><a href="php/logout.php">Logout</a></li>
+    </ul>
+  </aside>
+
+  <main class="main-content">
+    <header class="topbar">
+      <h1>Add New Hotel</h1>
+    </header>
+
+    <form action="php/add_hotel.php" method="POST" class="add-form">
+      <label>Hotel Name</label>
+      <input type="text" name="name" required />
+
+      <label>Location</label>
+      <input type="text" name="location" required />
+
+      <label>Description</label>
+      <textarea name="description" rows="4" required></textarea>
+
+      <label>Price (₱)</label>
+      <input type="number" name="price" step="0.01" required />
+
+      <label>Image URL</label>
+      <input type="text" name="image_url" placeholder="e.g. images/hotel.jpg" />
+
+      <button type="submit" class="btn-login">Add Hotel</button>
+    </form>
+  </main>
+</body>
+</html>

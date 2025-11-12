@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manage Hotels | StayBnB Admin</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="js/app.js" defer></script>
+</head>
+<body class="admin-body">
+  <aside class="sidebar">
+    <h2 class="sidebar-title">StayBnB Admin</h2>
+    <ul class="sidebar-nav">
+      <li><a href="index.html">Dashboard</a></li>
+      <li><a href="hotels.html" class="active">Hotels</a></li>
+      <li><a href="add-hotel.html">Add Hotel</a></li>
+      <li><a href="bookings.html">Bookings</a></li>
+      <li><a href="users.html">Users</a></li>
+      <li><a href="php/logout.php">Logout</a></li>
+    </ul>
+  </aside>
+
+  <main class="main-content">
+    <header class="topbar">
+      <h1>Manage Hotels</h1>
+    </header>
+
+    <section class="table-section">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Hotel Name</th>
+            <th>Location</th>
+            <th>Price</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="hotelList">
+          <tr><td colspan="5" style="text-align:center;">Loading hotels…</td></tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      fetch("php/get_hotels.php")
+        .then(res => res.json())
+        .then(data => {
+          const tbody = document.getElementById("hotelList");
+          tbody.innerHTML = "";
+          if (data.length === 0) {
+            tbody.innerHTML = "<tr><td colspan='5' style='text-align:center;'>No hotels found</td></tr>";
+          } else {
+            data.forEach(hotel => {
+              tbody.innerHTML += `
+                <tr>
+                  <td>${hotel.hotel_id}</td>
+                  <td>${hotel.name}</td>
+                  <td>${hotel.location}</td>
+                  <td>₱${hotel.price}</td>
+                  <td>
+                    <button onclick="deleteHotel(${hotel.hotel_id})" class="btn-delete">Delete</button>
+                  </td>
+                </tr>`;
+            });
+          }
+        });
+    });
+
+    function deleteHotel(id) {
+      if (!confirm("Delete this hotel?")) return;
+      fetch("php/delete_hotel.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: "hotel_id=" + id
+      })
+        .then(res => res.text())
+        .then(msg => {
+          alert(msg);
+          location.reload();
+        });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manage Users | StayBnB Admin</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="admin-body">
+  <aside class="sidebar">
+    <h2 class="sidebar-title">StayBnB Admin</h2>
+    <ul class="sidebar-nav">
+      <li><a href="index.html">Dashboard</a></li>
+      <li><a href="hotels.html">Hotels</a></li>
+      <li><a href="add-hotel.html">Add Hotel</a></li>
+      <li><a href="bookings.html">Bookings</a></li>
+      <li><a href="users.html" class="active">Users</a></li>
+      <li><a href="php/logout.php">Logout</a></li>
+    </ul>
+  </aside>
+
+  <main class="main-content">
+    <header class="topbar">
+      <h1>Manage Users</h1>
+    </header>
+
+    <section class="table-section">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Full Name</th>
+            <th>Email</th>
+          </tr>
+        </thead>
+        <tbody id="userList">
+          <tr><td colspan="3" style="text-align:center;">Loading users…</td></tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      fetch("php/get_users.php")
+        .then(res => res.json())
+        .then(data => {
+          const tbody = document.getElementById("userList");
+          tbody.innerHTML = "";
+          if (data.length === 0) {
+            tbody.innerHTML = "<tr><td colspan='3' style='text-align:center;'>No users found</td></tr>";
+          } else {
+            data.forEach(u => {
+              tbody.innerHTML += `
+                <tr>
+                  <td>${u.user_id}</td>
+                  <td>${u.fullname}</td>
+                  <td>${u.email}</td>
+                </tr>`;
+            });
+          }
+        });
+    });
+  </script>
+</body>
+</html>

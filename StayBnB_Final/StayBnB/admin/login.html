@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>StayBnB Admin Login</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="login-body">
+  <div class="login-container">
+    <h2 class="login-title">StayBnB Admin Login</h2>
+    <form action="php/login.php" method="POST" class="login-form">
+      <div class="input-group">
+        <label>Username</label>
+        <input type="text" name="username" placeholder="Enter username" required />
+      </div>
+
+      <div class="input-group">
+        <label>Password</label>
+        <input type="password" name="password" placeholder="Enter password" required />
+      </div>
+
+      <button type="submit" class="btn-login">Login</button>
+    </form>
+
+    <p class="login-note">Use your admin credentials to access the dashboard.</p>
+  </div>
+</body>
+</html>

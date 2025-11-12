@@ -1,0 +1,47 @@
+<section id="hotels-list" class="container my-5">
+  <h2 class="text-center mb-4 fw-bold">Available Hotels</h2>
+  <div id="hotelsContainer" class="row justify-content-center"></div>
+</section>
+
+<script>
+fetch('admin/php/get_hotels.php')
+  .then(res => res.json())
+  .then(data => {
+    const container = document.getElementById('hotelsContainer');
+    container.innerHTML = '';
+
+    if (data.length === 0) {
+      container.innerHTML = `
+        <div class="text-center text-muted py-5">
+          <img src="img/no-hotels.png" alt="No hotels" style="max-width:200px; opacity:0.7;">
+          <p class="mt-3">No hotels available yet. Please check back soon!</p>
+        </div>`;
+      return;
+    }
+
+    data.forEach(hotel => {
+      const card = `
+        <div class="col-md-4 col-sm-6 mb-4">
+          <div class="card shadow border-0 h-100">
+            <img src="admin/uploads/${hotel.image_url}" class="card-img-top" alt="${hotel.name}">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title text-center mb-2">${hotel.name}</h5>
+              <p class="card-text text-muted small">${hotel.description}</p>
+              <div class="mt-auto text-center">
+                <p class="fw-bold mb-2">₱${hotel.price} / night</p>
+                <a href="Booking-section.html?hotel_id=${hotel.hotel_id}" class="btn btn-primary btn-sm w-100">Book Now</a>
+              </div>
+            </div>
+          </div>
+        </div>`;
+      container.innerHTML += card;
+    });
+  })
+  .catch(err => {
+    console.error('Error loading hotels:', err);
+    document.getElementById('hotelsContainer').innerHTML = `
+      <div class="text-center text-danger py-5">
+        <p>⚠️ Failed to load hotels. Please try again later.</p>
+      </div>`;
+  });
+</script>

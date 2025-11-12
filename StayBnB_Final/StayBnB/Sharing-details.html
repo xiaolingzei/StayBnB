@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sharing Is Earning - Registration</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #000000 0%, #ffffff 100%);
+            color: #333;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 40px 0;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        /* Back Button */
+        .back-btn {
+            display: block;
+            width: fit-content;
+            margin: 0 auto;
+            background: rgb(10, 83, 254);
+            color: white;
+            padding: 14px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .back-btn:hover {
+            transform: translateX(-5px);
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .back-btn i {
+            margin-right: 8px;
+        }
+
+        /* Content Cards */
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .content-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .content-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            color: #000000;
+            margin-bottom: 20px;
+        }
+
+        .content-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+
+        .content-card p {
+            color: #5d6d7e;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        /* How It Works Section */
+        .steps-section {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 50px;
+        }
+
+        .steps-section h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            color: #2c3e50;
+            font-size: 2.2rem;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .step {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .step-number {
+            background: #000000;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .step h4 {
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            background: white;
+            border-radius: 20px;
+            padding: 50px;
+            margin-bottom: 30px;
+        }
+
+        .cta-section h2 {
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+
+        .cta-section p {
+            margin-bottom: 30px;
+            color: #5d6d7e;
+            font-size: 1.1rem;
+        }
+
+        .cta-btn {
+              background: rgb(10, 83, 254);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .steps-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .cta-section {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <!-- Header -->
+        <div class="header">
+            <h1>Sharing Is Earning</h1>
+            <p>Turn your extra space into extra income</p>
+        </div>
+
+        <!-- Content Grid -->
+        <div class="content-grid">
+            <div class="content-card">
+                <div class="card-icon">
+                    <i class="fas fa-home"></i>
+                </div>
+                <h3>Rent Your Space</h3>
+                <p>Got an extra room, parking space, or storage area? List it and start earning today. Perfect for homeowners and renters alike.</p>
+                <p>Average earnings: $200-$500 per month</p>
+            </div>
+
+            <div class="content-card">
+                <div class="card-icon">
+                    <i class="fas fa-car"></i>
+                </div>
+                <h3>Share Your Vehicle</h3>
+                <p>When you're not using your car, let it work for you. Rent it out to trusted community members and earn passive income.</p>
+                <p>Average earnings: $300-$800 per month</p>
+            </div>
+
+            <div class="content-card">
+                <div class="card-icon">
+                    <i class="fas fa-tools"></i>
+                </div>
+                <h3>Lend Your Equipment</h3>
+                <p>From power tools to camping gear, your unused equipment can generate income when shared with neighbors.</p>
+                <p>Average earnings: $50-$200 per month</p>
+            </div>
+        </div>
+
+        <!-- How It Works -->
+        <div class="steps-section">
+            <h2>How It Works</h2>
+            <div class="steps-grid">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h4>List Your Space</h4>
+                    <p>Create a listing with photos and details</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h4>Set Your Price</h4>
+                    <p>Choose your rates and availability</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h4>Get Booked</h4>
+                    <p>Receive booking requests from users</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h4>Start Earning</h4>
+                    <p>Get paid securely through our platform</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA Section -->
+        <div class="cta-section">
+            <h2>Ready to Start Earning?</h2>
+            <p>Join thousands of people who are already making money by sharing their extra space and assets.</p>
+            <a href="RegistrationForSharing.html" class="cta-btn">Get Started Today</a>
+               <!-- Back Button -->
+        <a href="index.html#SharingSection" class="back-btn">
+            <i class="fas fa-arrow-left"></i> Back to Home</a>
+        </div>
+    </div>
+</body>
+</html>
